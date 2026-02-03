@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Bio Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome (for social icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Ambient background orbs -->
+  <div class="bg-orb bg-orb--1"></div>
+  <div class="bg-orb bg-orb--2"></div>
+  <div class="bg-orb bg-orb--3"></div>
+
+  <!-- Toast notification (shared globally) -->
+  <div class="toast" id="toast">
+    <span class="toast__icon">✓</span>
+    <span class="toast__msg">Bio copied to clipboard!</span>
+  </div>
+
+  <!-- ================================================
+       TOP ROW — Hero (left)  +  Generator (right)
+       ================================================ -->
+  <div class="top-row">
+
+    <!-- LEFT — Hero / Intro -->
+    <section class="hero" id="heroSection">
+      <div class="hero__photo-wrap">
+        <div class="hero__photo">
+          <img src="photo.jpg" alt="Lalit" />
+        </div>
+      </div>
+      <div class="hero__content">
+        <p class="hero__greeting">Hello, I'm</p>
+        <h1 class="hero__name" id="heroName" aria-label="Lalit">
+          <span class="hero__cursor" id="heroCursor"></span>
+        </h1>
+        <p class="hero__subtitle">B.Tech CSE at University of Lucknow</p>
+        <div class="hero__socials">
+          <a href="#" class="hero__social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="hero__social-link" aria-label="Instagram" target="_blank" rel="noopener">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="hero__social-link" aria-label="Facebook" target="_blank" rel="noopener">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT — Custom Bio Generator -->
+    <main class="card">
+
+    <header class="card__header">
+      <div class="card__logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#f09433"/>
+              <stop offset="25%"  stop-color="#e6683c"/>
+              <stop offset="50%"  stop-color="#dc2743"/>
+              <stop offset="75%"  stop-color="#cc2366"/>
+              <stop offset="100%" stop-color="#bc1888"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="5"/>
+          <circle cx="17.5" cy="6.5" r="1.5" fill="url(#grad)" stroke="none"/>
+        </svg>
+      </div>
+      <h1 class="card__title">Bio Generator</h1>
+      <p class="card__sub">Craft your perfect Instagram bio in seconds</p>
+    </header>
+
+    <div class="card__divider"></div>
+
+    <!-- Input form -->
+    <section class="form">
+      <div class="form__row">
+        <div class="form__field">
+          <label class="form__label" for="name">
+            <span class="form__label-icon">✦</span> Name
+          </label>
+          <input class="form__input" type="text" id="name" placeholder="e.g. Alex Rivera" autocomplete="off" />
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="profession">
+            <span class="form__label-icon">✦</span> Profession
+          </label>
+          <input class="form__input" type="text" id="profession" placeholder="e.g. UI/UX Designer" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="form__field">
+        <label class="form__label" for="skills">
+          <span class="form__label-icon">✦</span> Skills
+          <span class="form__label-hint">(comma separated)</span>
+        </label>
+        <input class="form__input" type="text" id="skills" placeholder="e.g. Figma, Branding, Web Design" autocomplete="off" />
+      </div>
+
+      <div class="form__field">
+        <label class="form__label" for="style">
+          <span class="form__label-icon">✦</span> Bio Style
+        </label>
+        <div class="form__select-wrap">
+          <select class="form__select" id="style">
+            <option value="cool">😎 Cool</option>
+            <option value="professional">💼 Professional</option>
+            <option value="fun">🔥 Fun</option>
+          </select>
+          <span class="form__select-arrow">▾</span>
+        </div>
+      </div>
+
+      <button class="btn btn--generate" id="generateBtn">
+        <span class="btn__icon">⚡</span>
+        <span class="btn__text">Generate Bio</span>
+      </button>
+    </section>
+
+    <!-- Generated output preview (hidden until first click) -->
+    <section class="output" id="outputSection">
+      <div class="card__divider"></div>
+      <div class="output__header">
+        <span class="output__label">Your Bio</span>
+        <button class="btn btn--copy" id="copyBtn">
+          <span class="btn__icon" id="copyIcon">📋</span>
+          <span class="btn__text">Copy</span>
+        </button>
+      </div>
+      <div class="output__card">
+        <div class="output__avatar" id="avatarCircle">
+          <span id="avatarLetter">A</span>
+        </div>
+        <div class="output__body">
+          <div class="output__name" id="previewName">Alex Rivera</div>
+          <div class="output__bio"  id="previewBio"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  </div><!-- end .top-row -->
+
+  <!-- ================================================
+       SECTION 2 – READY-MADE BIO COLLECTION
+       ================================================ -->
+  <section class="readymade">
+
+    <div class="readymade__header">
+      <h2 class="readymade__title">📚 Ready-Made Instagram Bios</h2>
+      <p class="readymade__sub">Tap copy on any bio you love – instant paste</p>
+    </div>
+
+    <!-- Tab switcher row -->
+    <div class="readymade__tabs">
+      <button class="tab tab--active" data-tab="boys">👦 Boys Bios</button>
+      <button class="tab"            data-tab="girls">👧 Girls Bios</button>
+    </div>
+
+    <!-- Live count label -->
+    <p class="readymade__count" id="bioCount">Showing 105 bios</p>
+
+    <!-- JS renders bio cards here -->
+    <div class="readymade__grid" id="bioGrid"></div>
+
+  </section>
+
+  <footer class="footer">Built with ✦ for creators</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
