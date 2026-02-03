@@ -298,6 +298,7 @@ body {
   position: relative;
   overflow: hidden;
   transition: color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.25s;
+  cursor: pointer;
 }
 .hero__social-link::before {
   content: '';
@@ -308,6 +309,7 @@ body {
   opacity: 0;
   transition: opacity 0.35s;
   z-index: 0;
+   pointer-events: none; 
 }
 .hero__social-link i {
   position: relative;
